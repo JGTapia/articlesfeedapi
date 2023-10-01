@@ -1,0 +1,6 @@
+# This is a comment in .gitignore
+secret_config.json
+build/
+.vscode/
+*.log
+*.exe
