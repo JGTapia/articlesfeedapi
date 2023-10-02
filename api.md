@@ -15,10 +15,10 @@ This endpoint retrieves a feed of articles based on optional query parameters.
 
 ### Query Parameters 
 
-- `sources` (String): A comma-separated list of source IDs to filter articles from multiple sources.
-- `page` (Number, Default: 1): The page number for paginated results.
-- `size` (Number, Default: 10, Max:50): The number of articles to include per page.
-- `lang` (Number, Default: 1): The language identifier for filtering articles by language.
+- `sources` (String, Optional, Default: all sourdes): A comma-separated list of source IDs to filter articles from multiple sources.
+- `page` (Number, Optional, Default: 1): The page number for paginated results.
+- `size` (Number, Optional, Default: 10, Max:50): The number of articles to include per page.
+- `lang` (Number, Optional, Default: 1): The language identifier for filtering articles by language.
 
 **Example Request:**
 
