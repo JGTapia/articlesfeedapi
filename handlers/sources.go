@@ -3,10 +3,16 @@ package handlers
 import (
 	"articlesfeedapi/domain"
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"time"
 )
 
 func GetSourcesHandler(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Println(time.Now().Format(time.RFC3339) + " - Trigger GetSourcesHandler")
+	fmt.Println("Client IP =" + r.RemoteAddr)
+
 	sources := []domain.Source{
 		{ID: 0, Name: "Mundo Deportivo"},
 		{ID: 1, Name: "Diario AS"},

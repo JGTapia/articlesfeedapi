@@ -3,11 +3,15 @@ package handlers
 import (
 	"articlesfeedapi/domain"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"time"
 )
 
 func GetBriefingHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(time.Now().Format(time.RFC3339) + " - Trigger GetBriefingHandler")
+	fmt.Println("Client IP =" + r.RemoteAddr)
+
 	//TODO: Add team, language and date support
 	// langStr := r.URL.Query().Get("lang")
 	// if langStr == "" {

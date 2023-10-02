@@ -3,10 +3,12 @@ package handlers
 import (
 	"articlesfeedapi/dal"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -55,6 +57,13 @@ func GetLatestArticlesHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	fmt.Println(time.Now().Format(time.RFC3339) + " - Trigger GetLatestArticlesHandler")
+	fmt.Println("LanguageID =" + langStr)
+	fmt.Println("Page =" + pageStr)
+	fmt.Println("Size =" + sizeStr)
+	fmt.Println("SourceIDs =" + sourceStr)
+	fmt.Println("Client IP =" + r.RemoteAddr)
+
 	articles, err := dal.GetArticles(
 		sourceIDs,
 		langID,
@@ -95,6 +104,11 @@ func GetArticleHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid ID", http.StatusBadRequest)
 		return
 	}
+
+	fmt.Println(time.Now().Format(time.RFC3339) + " - Trigger GetArticleHandler")
+	fmt.Println("LanguageID =" + langStr)
+	fmt.Println("ArticleID =" + idStr)
+	fmt.Println("Client IP =" + r.RemoteAddr)
 
 	article, err := dal.GetArticle(
 		articleID,
