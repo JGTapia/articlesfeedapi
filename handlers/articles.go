@@ -7,9 +7,12 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 func GetLatestArticlesHandler(w http.ResponseWriter, r *http.Request) {
+	//TODO: Add team support
 	langStr := r.URL.Query().Get("lang")
 	if langStr == "" {
 		langStr = "1"
@@ -71,6 +74,45 @@ func GetLatestArticlesHandler(w http.ResponseWriter, r *http.Request) {
 	// Write the JSON response
 	w.WriteHeader(http.StatusOK)
 	w.Write(articlesJSON)
+}
+
+func GetArticleHandler(w http.ResponseWriter, r *http.Request) {
+	langStr := r.URL.Query().Get("lang")
+	if langStr == "" {
+		langStr = "1"
+	}
+	langID, err := strconv.Atoi(langStr)
+	if err != nil {
+		http.Error(w, "Invalid Page Size", http.StatusBadRequest)
+		return
+	}
+
+	vars := mux.Vars(r)
+	idStr := vars["article_id"]
+
+	articleID, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "Invalid ID", http.StatusBadRequest)
+		return
+	}
+
+	article, err := dal.GetArticle(
+		articleID,
+		langID)
+
+	// Marshal the article into JSON
+	articleJSON, err := json.Marshal(article)
+	if err != nil {
+		http.Error(w, "Failed to marshal articles into JSON", http.StatusInternalServerError)
+		return
+	}
+
+	// Set appropriate content type header
+	w.Header().Set("Content-Type", "application/json")
+
+	// Write the JSON response
+	w.WriteHeader(http.StatusOK)
+	w.Write(articleJSON)
 }
 
 func stringToIntSlice(sourceStr string) ([]int, error) {
