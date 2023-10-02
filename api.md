@@ -23,6 +23,7 @@ This endpoint retrieves a feed of articles based on optional query parameters.
 **Example Request:**
 
 ```http
+GET http://localhost:8084/feed
 GET http://localhost:8084/feed?sources=0,1,2,4,5&page=1&size=100&lang=1
 ```
 
