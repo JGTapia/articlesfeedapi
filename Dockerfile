@@ -18,7 +18,7 @@ EXPOSE 8084
 CMD ["./main"]
 
 # Commands create
-#  docker buildx build --platform linux/arm/v84 -t articlesfeedapi . 
+#  docker buildx build --platform linux/arm/v8 -t articlesfeedapi . 
 #  docker buildx build -t articlesfeedapi . 
 # Commands install
-#  docker run -p 8084:8084 -e CONNECTIONSTRING='xxxxxx' articlesfeedapi
+#  docker run -d -p 8084:8084 -e CONNECTIONSTRING='xxxxxx' articlesfeedapi

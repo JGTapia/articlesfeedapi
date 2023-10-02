@@ -14,7 +14,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/feed", handlers.GetLatestArticlesHandler).Methods("GET")
 	r.HandleFunc("/briefing", handlers.GetBriefingHandler).Methods("GET")
-	r.HandleFunc("/article/{article_id:[0-9]+}", handlers.GetLatestArticlesHandler).Methods("GET")
+	r.HandleFunc("/article/{article_id:[0-9]+}", handlers.GetArticleHandler).Methods("GET")
 	r.HandleFunc("/sources", handlers.GetSourcesHandler).Methods("GET")
 
 	fmt.Println("Server started at :8084")
